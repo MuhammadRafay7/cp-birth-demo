@@ -3,7 +3,6 @@
 
 @theme {
   --animate-fade-up: fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
-  --animate-marquee: marquee 40s linear infinite;
   --animate-shimmer: shimmer 1.8s ease-in-out infinite;
 
   @keyframes fade-up {
@@ -14,12 +13,6 @@
     to {
       opacity: 1;
       transform: translateY(0);
-    }
-  }
-
-  @keyframes marquee {
-    to {
-      transform: translateX(-50%);
     }
   }
 

@@ -1,11 +1,10 @@
-import { BrandMarquee } from "@/components/home/brand-marquee";
-import { BrandValues } from "@/components/home/brand-values";
-import { CategoryCards } from "@/components/home/category-cards";
-import { FaqNewsletter } from "@/components/home/faq-newsletter";
-import { FeaturedProtocols } from "@/components/home/featured-protocols";
+import { ConsultCta } from "@/components/layout/consult-cta";
+import { AboutPreview } from "@/components/home/about-preview";
+import { FaqTeaser } from "@/components/home/faq-teaser";
 import { Hero } from "@/components/home/hero";
-import { HowItWorks } from "@/components/home/how-it-works";
-import { Testimonials } from "@/components/home/testimonials";
+import { ServicesPreview } from "@/components/home/services-preview";
+import { TrustBar } from "@/components/home/trust-bar";
+import { WhyChooseUs } from "@/components/home/why-choose-us";
 import { JsonLd, organizationJsonLd } from "@/lib/structured-data";
 
 export default function Home() {
@@ -13,13 +12,12 @@ export default function Home() {
     <>
       <JsonLd data={organizationJsonLd()} />
       <Hero />
-      <BrandMarquee />
-      <CategoryCards />
-      <FeaturedProtocols />
-      <HowItWorks />
-      <BrandValues />
-      <Testimonials />
-      <FaqNewsletter />
+      <TrustBar />
+      <ServicesPreview />
+      <AboutPreview />
+      <WhyChooseUs />
+      <FaqTeaser />
+      <ConsultCta />
     </>
   );
 }

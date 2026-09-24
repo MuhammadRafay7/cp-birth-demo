@@ -6,12 +6,12 @@ import { useEffect, useId, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { List, X } from "@phosphor-icons/react/dist/ssr";
 import { Logo } from "@/components/layout/logo";
-import { ExternalButton } from "@/components/ui/button";
+import { ButtonLink } from "@/components/ui/button";
 import { cn } from "@/lib/format";
-import { siteConfig, tenant } from "@/lib/site";
+import { ctaLabel, siteConfig } from "@/lib/site";
 
 function isActive(pathname: string, href: string) {
-  return href === "/" ? pathname === "/" : pathname.startsWith(href);
+  return href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(`${href}/`);
 }
 
 export function SiteHeader() {
@@ -22,7 +22,7 @@ export function SiteHeader() {
 
   useEffect(() => {
     if (!menuOpen) return;
-    const desktop = window.matchMedia("(min-width: 64rem)");
+    const desktop = window.matchMedia("(min-width: 80rem)");
     const close = () => setMenuOpen(false);
     const onKey = (event: KeyboardEvent) => event.key === "Escape" && close();
     desktop.addEventListener("change", close);
@@ -38,7 +38,7 @@ export function SiteHeader() {
       <div className="container-page flex h-[4.5rem] items-center justify-between gap-6">
         <Logo onClick={() => setMenuOpen(false)} />
 
-        <nav aria-label="Primary" className="hidden lg:block">
+        <nav aria-label="Primary" className="hidden xl:block">
           <ul className="flex items-center gap-8">
             {siteConfig.nav.map((link) => {
               const active = isActive(pathname, link.href);
@@ -62,16 +62,16 @@ export function SiteHeader() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <ExternalButton href={tenant.shopUrl} size="sm" className="max-sm:hidden">
-            Shop Protocols
-          </ExternalButton>
+          <ButtonLink href="/contact" size="sm" className="max-sm:hidden">
+            {ctaLabel}
+          </ButtonLink>
           <button
             type="button"
             onClick={() => setMenuOpen((open) => !open)}
             aria-expanded={menuOpen}
             aria-controls={menuId}
             aria-label={menuOpen ? "Close menu" : "Open menu"}
-            className="grid size-11 place-items-center rounded-full text-brand-forest transition-colors hover:bg-brand-cream lg:hidden"
+            className="grid size-11 place-items-center rounded-full text-brand-forest transition-colors hover:bg-brand-cream xl:hidden"
           >
             {menuOpen ? <X size={22} aria-hidden /> : <List size={22} aria-hidden />}
           </button>
@@ -83,7 +83,7 @@ export function SiteHeader() {
           <motion.nav
             id={menuId}
             aria-label="Mobile"
-            className="border-t border-line bg-white lg:hidden"
+            className="border-t border-line bg-white xl:hidden"
             initial={reduceMotion ? false : { opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
             exit={reduceMotion ? { opacity: 0 } : { opacity: 0, y: -8 }}
@@ -104,9 +104,9 @@ export function SiteHeader() {
                   </li>
                 ))}
               </ul>
-              <ExternalButton href={tenant.shopUrl} className="mb-3 mt-5 w-full sm:hidden">
-                Shop Protocols
-              </ExternalButton>
+              <ButtonLink href="/contact" onClick={() => setMenuOpen(false)} className="mb-3 mt-5 w-full sm:hidden">
+                {ctaLabel}
+              </ButtonLink>
             </div>
           </motion.nav>
         )}

@@ -1,5 +1,5 @@
 import { Plus } from "@phosphor-icons/react/dist/ssr";
-import type { Faq } from "@/data/content";
+import type { Faq } from "@/data/faqs";
 
 export function FaqList({ items, name, openFirst }: { items: Faq[]; name: string; openFirst?: boolean }) {
   return (

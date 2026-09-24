@@ -1,39 +1,51 @@
 export type NavLink = { label: string; href: string };
 
-const tenantUrl = "https://cpbirth.pharmabuilt.com";
-
-export const tenant = {
-  url: tenantUrl,
-  shopUrl: `${tenantUrl}/shop`,
-  contactUrl: `${tenantUrl}/contact`,
-  legal: [
-    { label: "Privacy Policy", href: `${tenantUrl}/privacy-policy` },
-    { label: "Terms of Use", href: `${tenantUrl}/terms-of-use` },
-    { label: "Cookie Policy", href: `${tenantUrl}/cookie-policy` },
-  ] satisfies NavLink[],
-} as const;
-
 export const siteConfig = {
   name: "CP Birth Center",
   tagline: "Natural · Family-centered · Peaceful",
-  title: "CP Birth Center | Practitioner-Formulated Daily Wellness Protocols",
+  title: "CP Birth Center | Midwife-led birth and hormone therapy in Southern Utah",
   description:
-    "Daily supplement protocols from the midwifery care team at CP Birth Center. Women's health, gut health, mood, energy, and immunity support in 30-day supplies.",
+    "A stand-alone, family-centered birth center in Southern Utah. Midwife-led prenatal care, birth, and postpartum care, plus bio-identical hormone therapy with Joanne T. Yarrish, CNM, FNP.",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
   region: "Southern Utah",
+  hospital: "St. George Regional Hospital",
+  midwife: {
+    name: "Joanne T. Yarrish",
+    credentials: "CNM, FNP",
+    title: "Certified Nurse-Midwife · Family Nurse Practitioner",
+    years: 33,
+  },
+  coordinator: "Katherine Naylor",
+  phone: {
+    display: "435-212-3206",
+    tel: "tel:+14352123206",
+    sms: "sms:+14352123206",
+  },
   nav: [
-    { label: "Home", href: "/" },
-    { label: "Protocols", href: "/protocols" },
+    { label: "Services", href: "/services" },
+    { label: "Birth Center", href: "/birth-center" },
+    { label: "Hormone Therapy", href: "/hormone-therapy" },
     { label: "About", href: "/about" },
     { label: "FAQ", href: "/faq" },
     { label: "Contact", href: "/contact" },
   ] satisfies NavLink[],
-  social: [
-    { label: "Instagram", href: "https://www.instagram.com/" },
-    { label: "Facebook", href: "https://www.facebook.com/" },
-    { label: "Pinterest", href: "https://www.pinterest.com/" },
-  ],
+  footerNav: [
+    { label: "Home", href: "/" },
+    { label: "Services", href: "/services" },
+    { label: "Birth Center", href: "/birth-center" },
+    { label: "Hormone Therapy", href: "/hormone-therapy" },
+    { label: "Teaching Videos", href: "/videos" },
+    { label: "About Joanne", href: "/about" },
+    { label: "FAQ", href: "/faq" },
+    { label: "Contact", href: "/contact" },
+  ] satisfies NavLink[],
+  legal: [
+    { label: "Privacy", href: "/privacy" },
+    { label: "Medical disclaimer", href: "/medical-disclaimer" },
+  ] satisfies NavLink[],
 } as const;
 
-export const fdaDisclaimer =
-  "These statements have not been evaluated by the Food and Drug Administration. These products are not intended to diagnose, treat, cure, or prevent any disease.";
+export const emergencyNote =
+  "If you're in labor or have a medical emergency, call 911 or go to the nearest emergency room.";
+
+export const ctaLabel = "Book a consultation";

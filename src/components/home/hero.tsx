@@ -1,130 +1,107 @@
-import Link from "next/link";
-import { CategoryIcon } from "@/components/brand/category-icon";
-import { ProductVisual } from "@/components/brand/product-visual";
-import { ButtonLink, ExternalButton } from "@/components/ui/button";
-import { categories, getProductBySlug, products, type Product } from "@/data/products";
-import { cn, formatPrice } from "@/lib/format";
-import { tenant } from "@/lib/site";
+import { Phone } from "@phosphor-icons/react/dist/ssr";
+import { ButtonLink } from "@/components/ui/button";
+import { ctaLabel, siteConfig } from "@/lib/site";
 
-function pick(slug: string): Product {
-  const product = getProductBySlug(slug);
-  if (!product) throw new Error(`Unknown product: ${slug}`);
-  return product;
-}
+const assurances = [
+  {
+    figure: "33 years",
+    text: "in obstetric and gynecologic care, from prenatal visits to postpartum.",
+  },
+  {
+    figure: "Hospital backup",
+    text: `through the OB/GYN providers at ${siteConfig.hospital}, if a birth becomes high-risk.`,
+  },
+  {
+    figure: "Family-centered",
+    text: `care for mothers and families across ${siteConfig.region}.`,
+  },
+];
 
-function MiniCard({ product, className }: { product: Product; className?: string }) {
+function Underline() {
   return (
-    <Link
-      href={`/protocols/${product.slug}`}
-      className={cn(
-        "absolute flex w-[13.5rem] items-center gap-3 rounded-2xl bg-white/95 p-3.5 pr-4 shadow-lift ring-1 ring-black/5 backdrop-blur transition-transform duration-300 hover:-translate-y-1 sm:w-60",
-        className,
-      )}
+    <svg
+      aria-hidden
+      viewBox="0 0 200 10"
+      preserveAspectRatio="none"
+      className="absolute -bottom-[0.08em] left-0 h-[0.16em] w-full text-brand-sage"
     >
-      <span className="grid size-11 shrink-0 place-items-center rounded-full bg-brand-sage-soft text-brand-forest">
-        <CategoryIcon category={product.category} size={22} />
-      </span>
-      <span className="min-w-0">
-        <span className="block text-[11px] font-semibold uppercase tracking-[0.12em] text-brand-forest">
-          {categories[product.category].label}
-        </span>
-        <span className="mt-0.5 block truncate text-sm font-medium text-ink">{product.tier} Protocol</span>
-        <span className="block text-sm tabular-nums text-ink-muted">{formatPrice(product.priceCents)}</span>
-      </span>
-    </Link>
+      <path
+        d="M2 6.2c32-3.1 64-3.9 98-2.6 32.5 1.3 65 2.4 98 .9"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="3"
+        strokeLinecap="round"
+      />
+    </svg>
   );
 }
 
 export function Hero() {
-  const lead = pick("foundations-womens-health-protocol");
-  const gut = pick("foundations-gut-health-protocol");
-  const mood = pick("foundations-mood-health-protocol");
-
   return (
-    <section aria-labelledby="hero-title" className="overflow-hidden bg-brand-cream">
-      <div className="container-page grid items-center gap-14 pb-16 pt-12 lg:grid-cols-[1.05fr_1fr] lg:gap-10 lg:pb-24 lg:pt-20">
-        <div className="max-w-xl lg:pb-6">
-          <p className="text-[13px] font-semibold uppercase tracking-[0.16em] text-brand-forest motion-safe:animate-fade-up">
-            From birth care to daily wellness
+    <section aria-labelledby="hero-title" className="bg-brand-cream">
+      <div className="container-page grid gap-12 py-14 sm:py-20 lg:grid-cols-12 lg:items-center lg:gap-10 lg:py-24">
+        <div className="lg:col-span-8">
+          <p className="text-sm font-medium text-brand-forest motion-safe:animate-fade-up">
+            {siteConfig.name} &middot; Midwifery care in {siteConfig.region}
           </p>
+
           <h1
             id="hero-title"
-            className="mt-6 text-balance pb-1 font-serif text-[2.75rem] leading-[1.08] tracking-tight text-ink motion-safe:animate-fade-up motion-safe:[animation-delay:80ms] sm:text-6xl lg:text-[4.25rem]"
+            className="mt-7 text-[2.75rem] font-semibold leading-[1.02] tracking-[-0.04em] text-ink motion-safe:animate-fade-up motion-safe:[animation-delay:80ms] sm:text-6xl lg:text-[4.5rem] xl:text-[5.25rem]"
           >
-            Daily wellness, rooted in <em className="text-brand-forest">midwifery</em> care.
+            You&rsquo;re in{" "}
+            <span className="relative inline-block whitespace-nowrap">
+              safe hands
+              <Underline />
+            </span>
+            .
+            <span className="mt-3 block font-light tracking-[-0.035em] text-brand-forest sm:mt-2">
+              Before birth, during it, and every day after.
+            </span>
           </h1>
-          <p className="mt-6 max-w-md text-pretty text-lg leading-relaxed text-ink-muted motion-safe:animate-fade-up motion-safe:[animation-delay:160ms] lg:ml-10">
-            Practitioner-formulated protocols for hormones, gut, mood, energy, and immunity, from the
-            team families trust with their births.
+
+          <p className="mt-9 max-w-[34rem] text-lg leading-relaxed text-ink/75 motion-safe:animate-fade-up motion-safe:[animation-delay:160ms]">
+            A stand-alone birth center where a certified nurse-midwife stays beside you from your first prenatal
+            visit to the weeks after your baby arrives, with a hospital team behind you if you ever need one.
           </p>
-          <div className="mt-9 flex flex-wrap gap-3 motion-safe:animate-fade-up motion-safe:[animation-delay:240ms] lg:ml-10">
-            <ButtonLink href="/protocols" size="lg">
-              Explore Protocols
+
+          <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-5 motion-safe:animate-fade-up motion-safe:[animation-delay:240ms]">
+            <ButtonLink href="/contact" size="lg">
+              {ctaLabel}
             </ButtonLink>
-            <ExternalButton href={tenant.shopUrl} size="lg" variant="secondary">
-              Visit Shop
-            </ExternalButton>
+            <a
+              href={siteConfig.phone.tel}
+              className="group inline-flex items-center gap-2.5 text-base font-medium text-ink/75"
+            >
+              <span className="grid size-9 place-items-center rounded-full bg-white text-brand-forest transition-colors group-hover:bg-brand-forest group-hover:text-white">
+                <Phone size={16} weight="bold" aria-hidden />
+              </span>
+              <span>
+                or call{" "}
+                <span className="font-semibold text-brand-forest underline decoration-brand-sage/50 underline-offset-[6px] group-hover:decoration-brand-forest">
+                  {siteConfig.phone.display}
+                </span>
+              </span>
+            </a>
           </div>
         </div>
 
-        <div
-          aria-label="Featured protocols"
-          role="group"
-          className="relative mx-auto h-[27rem] w-full max-w-[34rem] sm:h-[33rem]"
-        >
-          <div
-            aria-hidden
-            className="absolute inset-x-[9%] bottom-0 top-[4%] rounded-t-full bg-brand-sage motion-safe:animate-fade-up"
-          />
-          <div
-            aria-hidden
-            className="absolute inset-x-[15%] bottom-0 top-[11%] rounded-t-full border border-white/35"
-          />
-
-          <Link
-            href={`/protocols/${lead.slug}`}
-            className="absolute left-1/2 top-[20%] w-[74%] -translate-x-1/2 sm:top-[18%] sm:w-[62%] overflow-hidden rounded-3xl bg-white shadow-lift ring-1 ring-black/5 transition-transform duration-300 hover:-translate-y-1 motion-safe:animate-fade-up motion-safe:[animation-delay:200ms]"
+        <div className="rounded-card border border-line bg-white/70 p-6 motion-safe:animate-fade-up motion-safe:[animation-delay:320ms] sm:p-8 lg:col-span-4">
+          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-ink-muted">Why families choose us</p>
+          <ul
+            aria-label="Why families choose us"
+            className="mt-5 grid gap-6 sm:grid-cols-3 sm:gap-5 lg:grid-cols-1 lg:gap-0 lg:divide-y lg:divide-line"
           >
-            <ProductVisual
-              product={lead}
-              preload
-              decorative
-              sizes="(min-width: 64rem) 22rem, 62vw"
-              className="aspect-[16/10] w-full"
-            />
-            <span className="block p-4 sm:p-5">
-              <span className="flex items-center justify-between gap-2 text-[11px] font-semibold uppercase tracking-[0.12em] text-brand-forest">
-                {categories[lead.category].label}
-                {lead.bestSeller && (
-                  <span className="rounded-full bg-brand-sage-soft px-2 py-0.5 normal-case tracking-normal">
-                    Best Seller
-                  </span>
-                )}
-              </span>
-              <span className="mt-2 block font-serif text-lg leading-snug text-ink sm:text-xl">{lead.name}</span>
-              <span className="mt-1 block text-sm tabular-nums text-ink-muted">
-                {formatPrice(lead.priceCents)} / {lead.supplyDays}-day supply
-              </span>
-            </span>
-          </Link>
-
-          <MiniCard
-            product={gut}
-            className="left-0 top-[8%] -rotate-3 max-sm:hidden motion-safe:animate-fade-up motion-safe:[animation-delay:320ms] sm:-left-4"
-          />
-          <MiniCard
-            product={mood}
-            className="bottom-[6%] right-0 rotate-2 max-sm:hidden motion-safe:animate-fade-up motion-safe:[animation-delay:420ms] sm:-right-4"
-          />
-
-          <div className="absolute right-0 top-0 rounded-2xl bg-brand-forest px-4 py-3 text-white shadow-lift motion-safe:animate-fade-up motion-safe:[animation-delay:520ms] sm:right-[4%] sm:top-[4%]">
-            <p className="font-serif text-3xl leading-none">{products.length}</p>
-            <p className="mt-1 text-xs font-medium leading-snug text-white/85">
-              targeted protocols
-              <br />
-              30-day supplies
-            </p>
-          </div>
+            {assurances.map((item) => (
+              <li key={item.figure} className="flex gap-4 lg:py-5 lg:first:pt-0 lg:last:pb-0">
+                <span aria-hidden className="mt-2 size-2 shrink-0 rounded-full bg-brand-sage" />
+                <div>
+                  <p className="text-lg font-semibold tracking-[-0.02em] text-brand-forest">{item.figure}</p>
+                  <p className="mt-1 text-[15px] leading-relaxed text-ink/70">{item.text}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </section>

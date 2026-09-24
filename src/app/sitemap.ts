@@ -1,20 +1,23 @@
 import type { MetadataRoute } from "next";
-import { products } from "@/data/products";
 import { siteConfig } from "@/lib/site";
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const url = (path: string) => new URL(path, siteConfig.url).toString();
+const routes: { path: string; priority: number; changeFrequency: "weekly" | "monthly" | "yearly" }[] = [
+  { path: "/", priority: 1, changeFrequency: "monthly" },
+  { path: "/services", priority: 0.9, changeFrequency: "monthly" },
+  { path: "/birth-center", priority: 0.9, changeFrequency: "monthly" },
+  { path: "/hormone-therapy", priority: 0.9, changeFrequency: "monthly" },
+  { path: "/about", priority: 0.8, changeFrequency: "yearly" },
+  { path: "/faq", priority: 0.7, changeFrequency: "monthly" },
+  { path: "/contact", priority: 0.8, changeFrequency: "yearly" },
+  { path: "/videos", priority: 0.5, changeFrequency: "monthly" },
+  { path: "/privacy", priority: 0.2, changeFrequency: "yearly" },
+  { path: "/medical-disclaimer", priority: 0.2, changeFrequency: "yearly" },
+];
 
-  return [
-    { url: url("/"), changeFrequency: "weekly", priority: 1 },
-    { url: url("/protocols"), changeFrequency: "weekly", priority: 0.9 },
-    ...products.map((product) => ({
-      url: url(`/protocols/${product.slug}`),
-      changeFrequency: "monthly" as const,
-      priority: 0.8,
-    })),
-    { url: url("/about"), changeFrequency: "yearly", priority: 0.6 },
-    { url: url("/faq"), changeFrequency: "monthly", priority: 0.5 },
-    { url: url("/contact"), changeFrequency: "yearly", priority: 0.4 },
-  ];
+export default function sitemap(): MetadataRoute.Sitemap {
+  return routes.map(({ path, priority, changeFrequency }) => ({
+    url: new URL(path, siteConfig.url).toString(),
+    priority,
+    changeFrequency,
+  }));
 }

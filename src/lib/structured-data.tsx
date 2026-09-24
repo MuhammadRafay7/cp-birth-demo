@@ -1,6 +1,5 @@
-import type { Faq } from "@/data/content";
-import type { Product } from "@/data/products";
-import { siteConfig, tenant } from "@/lib/site";
+import type { Faq } from "@/data/faqs";
+import { siteConfig } from "@/lib/site";
 
 export function JsonLd({ data }: { data: object }) {
   return (
@@ -11,33 +10,20 @@ export function JsonLd({ data }: { data: object }) {
   );
 }
 
-const absolute = (path: string) => new URL(path, siteConfig.url).toString();
-
 export function organizationJsonLd() {
   return {
     "@context": "https://schema.org",
-    "@type": "Organization",
+    "@type": "MedicalClinic",
     name: siteConfig.name,
     url: siteConfig.url,
-    logo: absolute("/brand/logo.png"),
-    sameAs: [tenant.url],
-  };
-}
-
-export function productJsonLd(product: Product) {
-  return {
-    "@context": "https://schema.org",
-    "@type": "Product",
-    name: product.name,
-    description: product.summary,
-    image: product.image ? absolute(product.image.src) : undefined,
-    url: absolute(`/protocols/${product.slug}`),
-    brand: { "@type": "Brand", name: siteConfig.name },
-    offers: {
-      "@type": "Offer",
-      url: product.shopUrl,
-      price: (product.priceCents / 100).toFixed(2),
-      priceCurrency: "USD",
+    logo: new URL("/brand/logo.svg", siteConfig.url).toString(),
+    telephone: "+1-435-212-3206",
+    areaServed: siteConfig.region,
+    medicalSpecialty: ["Obstetric", "Gynecologic"],
+    employee: {
+      "@type": "Person",
+      name: siteConfig.midwife.name,
+      jobTitle: "Certified Nurse-Midwife, Family Nurse Practitioner",
     },
   };
 }

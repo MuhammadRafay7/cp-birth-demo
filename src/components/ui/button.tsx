@@ -1,6 +1,5 @@
 import Link from "next/link";
 import type { ComponentProps } from "react";
-import { ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
 import { cn } from "@/lib/format";
 
 type Variant = "primary" | "secondary" | "inverse" | "ghost";
@@ -40,27 +39,8 @@ export function ButtonLink({ variant, size, className, ...props }: ButtonLinkPro
   return <Link className={buttonStyles({ variant, size, className })} {...props} />;
 }
 
-type ExternalButtonProps = Omit<ComponentProps<"a">, "target" | "rel"> & StyleProps;
+type AnchorButtonProps = ComponentProps<"a"> & StyleProps;
 
-export function ExternalButton({
-  variant,
-  size,
-  className,
-  children,
-  "aria-label": ariaLabel,
-  ...props
-}: ExternalButtonProps) {
-  return (
-    <a
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label={ariaLabel ? `${ariaLabel} (opens in a new tab)` : undefined}
-      className={buttonStyles({ variant, size, className })}
-      {...props}
-    >
-      {children}
-      <ArrowUpRight size={16} weight="bold" aria-hidden />
-      {!ariaLabel && <span className="sr-only">(opens in a new tab)</span>}
-    </a>
-  );
+export function AnchorButton({ variant, size, className, ...props }: AnchorButtonProps) {
+  return <a className={buttonStyles({ variant, size, className })} {...props} />;
 }
