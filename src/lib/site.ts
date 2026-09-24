@@ -1,5 +1,9 @@
 export type NavLink = { label: string; href: string };
 
+export type NavChild = NavLink & { description?: string; nested?: boolean };
+
+export type NavItem = NavLink & { children?: NavChild[] };
+
 export const siteConfig = {
   name: "CP Birth Center",
   tagline: "Natural · Family-centered · Peaceful",
@@ -22,13 +26,34 @@ export const siteConfig = {
     sms: "sms:+14352123206",
   },
   nav: [
-    { label: "Services", href: "/services" },
-    { label: "Birth Center", href: "/birth-center" },
-    { label: "Hormone Therapy", href: "/hormone-therapy" },
+    {
+      label: "Services",
+      href: "/services",
+      children: [
+        { label: "All services", href: "/services", description: "Everything we offer, in one place" },
+        {
+          label: "Birth at the center",
+          href: "/birth-center",
+          description: "Prenatal care, birth, and postpartum",
+        },
+        {
+          label: "Hormone therapy",
+          href: "/hormone-therapy",
+          description: "bHRT for perimenopause and menopause",
+        },
+        { label: "Check your symptoms", href: "/hormone-therapy#symptoms", nested: true },
+        { label: "Hormone therapy for men", href: "/hormone-therapy#men", description: "Support for low testosterone" },
+        {
+          label: "Women\u2019s health",
+          href: "/services#womens-health",
+          description: "Urinary, menstrual, and gynecologic care",
+        },
+      ],
+    },
     { label: "About", href: "/about" },
     { label: "FAQ", href: "/faq" },
     { label: "Contact", href: "/contact" },
-  ] satisfies NavLink[],
+  ] satisfies NavItem[],
   footerNav: [
     { label: "Home", href: "/" },
     { label: "Services", href: "/services" },
