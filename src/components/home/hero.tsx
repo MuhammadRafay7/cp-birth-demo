@@ -1,6 +1,12 @@
 import { Phone } from "@phosphor-icons/react/dist/ssr";
+import { HeroVideo } from "@/components/home/hero-video";
 import { ButtonLink } from "@/components/ui/button";
 import { ctaLabel, siteConfig } from "@/lib/site";
+
+const heroVideo = {
+  id: "fKja0y17vt4",
+  title: "What happens in your body during a miscarriage? (TED-Ed)",
+};
 
 const assurances = [
   {
@@ -39,15 +45,15 @@ function Underline() {
 export function Hero() {
   return (
     <section aria-labelledby="hero-title" className="bg-brand-cream">
-      <div className="container-page grid gap-12 py-14 sm:py-20 lg:grid-cols-12 lg:items-center lg:gap-10 lg:py-24">
-        <div className="lg:col-span-8">
+      <div className="container-page grid gap-12 py-14 sm:py-20 lg:grid-cols-12 lg:items-center lg:gap-x-12 lg:gap-y-16 lg:py-24">
+        <div className="lg:col-span-7">
           <p className="text-sm font-medium text-brand-forest motion-safe:animate-fade-up">
             {siteConfig.name} &middot; Midwifery care in {siteConfig.region}
           </p>
 
           <h1
             id="hero-title"
-            className="mt-7 text-[2.75rem] font-semibold leading-[1.02] tracking-[-0.04em] text-ink motion-safe:animate-fade-up motion-safe:[animation-delay:80ms] sm:text-6xl lg:text-[4.5rem] xl:text-[5.25rem]"
+            className="mt-7 text-[2.75rem] font-semibold leading-[1.02] tracking-[-0.04em] text-ink motion-safe:animate-fade-up motion-safe:[animation-delay:80ms] sm:text-6xl lg:text-[4rem] xl:text-[4.5rem]"
           >
             You&rsquo;re in{" "}
             <span className="relative inline-block whitespace-nowrap">
@@ -86,14 +92,18 @@ export function Hero() {
           </div>
         </div>
 
-        <div className="rounded-card border border-line bg-white/70 p-6 motion-safe:animate-fade-up motion-safe:[animation-delay:320ms] sm:p-8 lg:col-span-4">
+        <div className="motion-safe:animate-fade-up motion-safe:[animation-delay:320ms] lg:col-span-5">
+          <HeroVideo {...heroVideo} />
+        </div>
+
+        <div className="rounded-card border border-line bg-white/70 p-6 motion-safe:animate-fade-up motion-safe:[animation-delay:400ms] sm:p-8 lg:col-span-12">
           <p className="text-xs font-semibold uppercase tracking-[0.14em] text-ink-muted">Why families choose us</p>
           <ul
             aria-label="Why families choose us"
-            className="mt-5 grid gap-6 sm:grid-cols-3 sm:gap-5 lg:grid-cols-1 lg:gap-0 lg:divide-y lg:divide-line"
+            className="mt-5 grid gap-6 sm:grid-cols-3 sm:gap-8"
           >
             {assurances.map((item) => (
-              <li key={item.figure} className="flex gap-4 lg:py-5 lg:first:pt-0 lg:last:pb-0">
+              <li key={item.figure} className="flex gap-4">
                 <span aria-hidden className="mt-2 size-2 shrink-0 rounded-full bg-brand-sage" />
                 <div>
                   <p className="text-lg font-semibold tracking-[-0.02em] text-brand-forest">{item.figure}</p>

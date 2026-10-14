@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight, Phone } from "@phosphor-icons/react/dist/ssr";
+import { ArrowRight, Phone } from "@phosphor-icons/react/dist/ssr";
 import { ConsultCta } from "@/components/layout/consult-cta";
 import { PageHeader } from "@/components/pages/page-header";
 import { SymptomExplorer } from "@/components/pages/symptom-explorer";
@@ -177,26 +177,13 @@ export default function HormoneTherapyPage() {
               Alongside hormone therapy, CP Birth Center offers women&rsquo;s health supplement protocols.
             </p>
             <div className="mt-6 flex flex-wrap gap-x-8 gap-y-3">
-              <a
-                href={siteConfig.shop.url}
-                target="_blank"
-                rel="noopener"
-                className="inline-flex items-center gap-1.5 font-medium text-brand-forest underline underline-offset-4"
-              >
-                See the supplements
-                <ArrowUpRight size={16} weight="bold" aria-hidden />
-                <span className="sr-only">(opens in a new tab)</span>
-              </a>
-              <a
-                href={siteConfig.shop.quiz}
-                target="_blank"
-                rel="noopener"
+              <Link
+                href="/supplements"
                 className="inline-flex items-center gap-1.5 font-medium text-brand-forest underline underline-offset-4"
               >
                 Take the supplement quiz
-                <ArrowUpRight size={16} weight="bold" aria-hidden />
-                <span className="sr-only">(opens in a new tab)</span>
-              </a>
+                <ArrowRight size={16} weight="bold" aria-hidden />
+              </Link>
             </div>
           </div>
         </Reveal>

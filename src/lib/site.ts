@@ -25,10 +25,6 @@ export const siteConfig = {
     tel: "tel:+14352123206",
     sms: "sms:+14352123206",
   },
-  shop: {
-    url: "https://cpbirth.pharmabuilt.com/",
-    quiz: "https://cpbirth.pharmabuilt.com/quiz",
-  },
   nav: [
     {
       label: "Services",
@@ -57,12 +53,14 @@ export const siteConfig = {
     { label: "About", href: "/about" },
     { label: "FAQ", href: "/faq" },
     { label: "Contact", href: "/contact" },
+    { label: "Supplements", href: "/supplements" },
   ] satisfies NavItem[],
   footerNav: [
     { label: "Home", href: "/" },
     { label: "Services", href: "/services" },
     { label: "Birth Center", href: "/birth-center" },
     { label: "Hormone Therapy", href: "/hormone-therapy" },
+    { label: "Supplements", href: "/supplements" },
     { label: "Teaching Videos", href: "/videos" },
     { label: "About Joanne", href: "/about" },
     { label: "FAQ", href: "/faq" },

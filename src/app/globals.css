@@ -105,6 +105,11 @@ body {
   outline-offset: 3px;
 }
 
+/* Headings that receive focus from script (e.g. on each quiz step) shouldn't show a focus ring. */
+[tabindex="-1"]:focus-visible {
+  outline: none;
+}
+
 ::selection {
   background: var(--brand-sage-soft);
   color: var(--ink);
