@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { Phone } from "@phosphor-icons/react/dist/ssr";
+import { ArrowUpRight, Phone } from "@phosphor-icons/react/dist/ssr";
 import { ConsultCta } from "@/components/layout/consult-cta";
 import { PageHeader } from "@/components/pages/page-header";
 import { SymptomExplorer } from "@/components/pages/symptom-explorer";
+import { SymptomQuiz } from "@/components/pages/symptom-quiz";
 import { AnchorButton, ButtonLink } from "@/components/ui/button";
 import { Reveal } from "@/components/ui/reveal";
 import { SectionHeading } from "@/components/ui/section-heading";
@@ -32,8 +33,12 @@ export default function HormoneTherapyPage() {
       <PageHeader
         id="hormone-title"
         eyebrow="Hormone therapy · bHRT"
-        title="Feel like yourself again."
-        description="Joanne Yarrish, CNM, FNP, prescribes bio-identical hormone replacement therapy (bHRT). It can ease many of the symptoms that come with perimenopause and menopause."
+        title={
+          <>
+            Feel like yourself <em className="text-brand-forest">again</em>.
+          </>
+        }
+        description="Joanne Yarrish, CNM, FNP, prescribes bio-identical hormone replacement therapy (bHRT). It can ease many of the symptoms that come with perimenopause and menopause. We also offer peptide therapy and supplements for long-term health and longevity."
         image={{
           src: hormoneHeader,
           alt: "A woman with short silver hair wrapped in a blanket on a porch step, face turned toward the morning sun",
@@ -65,12 +70,20 @@ export default function HormoneTherapyPage() {
         <Reveal>
           <SectionHeading
             id="symptoms-title"
+            eyebrow="01 — Symptoms"
             title="What you might be noticing."
-            description="Many symptoms trace back to changes in three hormones. Choose your stage to see what’s common."
+            description="Many symptoms trace back to changes in three hormones. Take the quick symptom check to see which ones may be behind how you feel."
           />
         </Reveal>
         <Reveal delay={0.08} className="mt-10">
-          <SymptomExplorer />
+          <SymptomQuiz />
+        </Reveal>
+        <Reveal className="mt-20">
+          <h3 className="font-serif text-2xl sm:text-3xl">Or browse the full list</h3>
+          <p className="mt-2 text-[17px] text-ink-muted">Choose your stage to see what&rsquo;s common.</p>
+          <div className="mt-8">
+            <SymptomExplorer />
+          </div>
         </Reveal>
         <Reveal className="mt-12">
           <div className="flex flex-col gap-6 rounded-card bg-brand-sage-soft p-7 sm:p-10 md:flex-row md:items-center md:justify-between">
@@ -97,7 +110,7 @@ export default function HormoneTherapyPage() {
       <section aria-labelledby="bhrt-title" className="border-y border-line bg-brand-cream py-20 lg:py-28">
         <div className="container-page grid gap-10 lg:grid-cols-[1fr_1.2fr] lg:gap-20">
           <Reveal>
-            <SectionHeading id="bhrt-title" eyebrow="About bHRT" title="Plant-derived, and matched to your body." />
+            <SectionHeading id="bhrt-title" eyebrow="02 — About bHRT" title="Plant-derived, and matched to your body." />
           </Reveal>
           <Reveal delay={0.08} className="space-y-5 text-lg leading-relaxed text-ink-muted">
             <p>
@@ -116,7 +129,7 @@ export default function HormoneTherapyPage() {
 
       <section aria-labelledby="start-title" className="container-page py-20 lg:py-28">
         <Reveal>
-          <SectionHeading id="start-title" title="How it starts" />
+          <SectionHeading id="start-title" eyebrow="03 — How it starts" title="How it starts" />
         </Reveal>
         <ol className="mt-12 grid gap-10 md:grid-cols-3 md:gap-8">
           {steps.map((step, index) => (
@@ -152,6 +165,38 @@ export default function HormoneTherapyPage() {
               <ButtonLink href="/contact" variant="secondary" size="lg" className="mt-7">
                 {ctaLabel}
               </ButtonLink>
+            </div>
+          </div>
+        </Reveal>
+        <Reveal className="mt-6">
+          <div className="rounded-card border border-line bg-brand-cream p-7 sm:p-10">
+            <h2 id="supplements-title" className="font-serif text-3xl leading-tight">
+              Supporting your hormones day to day.
+            </h2>
+            <p className="mt-3 max-w-[56ch] text-lg leading-relaxed text-ink-muted">
+              Alongside hormone therapy, CP Birth Center offers women&rsquo;s health supplement protocols.
+            </p>
+            <div className="mt-6 flex flex-wrap gap-x-8 gap-y-3">
+              <a
+                href={siteConfig.shop.url}
+                target="_blank"
+                rel="noopener"
+                className="inline-flex items-center gap-1.5 font-medium text-brand-forest underline underline-offset-4"
+              >
+                See the supplements
+                <ArrowUpRight size={16} weight="bold" aria-hidden />
+                <span className="sr-only">(opens in a new tab)</span>
+              </a>
+              <a
+                href={siteConfig.shop.quiz}
+                target="_blank"
+                rel="noopener"
+                className="inline-flex items-center gap-1.5 font-medium text-brand-forest underline underline-offset-4"
+              >
+                Take the supplement quiz
+                <ArrowUpRight size={16} weight="bold" aria-hidden />
+                <span className="sr-only">(opens in a new tab)</span>
+              </a>
             </div>
           </div>
         </Reveal>

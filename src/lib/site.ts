@@ -25,6 +25,10 @@ export const siteConfig = {
     tel: "tel:+14352123206",
     sms: "sms:+14352123206",
   },
+  shop: {
+    url: "https://cpbirth.pharmabuilt.com/",
+    quiz: "https://cpbirth.pharmabuilt.com/quiz",
+  },
   nav: [
     {
       label: "Services",
