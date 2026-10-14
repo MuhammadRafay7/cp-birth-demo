@@ -12,6 +12,8 @@ const config: Config = {
           "forest-deep": "#3C5139",
           cream: "#F3EEE4",
           "cream-deep": "#E9E1D2",
+          clay: "#A64F35",
+          "clay-deep": "#8B3F28",
         },
         ink: {
           DEFAULT: "#1A1A1A",

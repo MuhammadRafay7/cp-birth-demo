@@ -43,7 +43,7 @@ export function SymptomExplorer() {
               onKeyDown={onKeyDown}
               className={cn(
                 "h-11 rounded-full px-5 text-[15px] font-semibold transition-colors duration-200",
-                selected ? "bg-brand-forest text-white" : "text-brand-forest hover:bg-brand-cream",
+                selected ? "bg-brand-clay text-white" : "text-brand-forest hover:bg-brand-cream",
               )}
             >
               {stages[key].label}

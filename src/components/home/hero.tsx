@@ -73,7 +73,7 @@ export function Hero() {
               href={siteConfig.phone.tel}
               className="group inline-flex items-center gap-2.5 text-base font-medium text-ink/75"
             >
-              <span className="grid size-9 place-items-center rounded-full bg-white text-brand-forest transition-colors group-hover:bg-brand-forest group-hover:text-white">
+              <span className="grid size-9 place-items-center rounded-full bg-white text-brand-forest transition-colors group-hover:bg-brand-clay group-hover:text-white">
                 <Phone size={16} weight="bold" aria-hidden />
               </span>
               <span>

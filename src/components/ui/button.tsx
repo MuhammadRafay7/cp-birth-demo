@@ -9,7 +9,7 @@ const base =
   "inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-full font-medium transition-[background-color,border-color,color,transform] duration-200 ease-out active:scale-[0.98] disabled:pointer-events-none disabled:opacity-60";
 
 const variants: Record<Variant, string> = {
-  primary: "bg-brand-forest text-white hover:bg-brand-forest-deep",
+  primary: "bg-brand-clay text-white hover:bg-brand-clay-deep",
   secondary: "border border-line-strong bg-surface text-brand-forest hover:border-brand-forest",
   inverse: "bg-white text-brand-forest hover:bg-brand-cream",
   ghost: "text-brand-forest underline-offset-4 hover:underline",
